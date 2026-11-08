@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A very special gift</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,300;1,400&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--sky1:#12030b;--sky2:#3b0b25;--ink:#ffe9ef;--soft:#f3b8c9;--gold:#f6c98f;--rose:#ff5c86;--rose-ink:#2a0712;--glow:rgba(255,92,134,.55);--glass:rgba(255,255,255,.07);--line:rgba(255,255,255,.16);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--sky1:#fff1ee;--sky2:#f9cfdb;--ink:#4a1028;--soft:#9a4c68;--gold:#b9772e;--rose:#d81b60;--rose-ink:#fff;--glow:rgba(216,27,96,.35);--glass:rgba(255,255,255,.55);--line:rgba(74,16,40,.14)}}
+:root[data-theme="light"]{--sky1:#fff1ee;--sky2:#f9cfdb;--ink:#4a1028;--soft:#9a4c68;--gold:#b9772e;--rose:#d81b60;--rose-ink:#fff;--glow:rgba(216,27,96,.35);--glass:rgba(255,255,255,.55);--line:rgba(74,16,40,.14)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:radial-gradient(130% 100% at 50% 110%,var(--sky2),var(--sky1) 72%);color:var(--ink);font-family:"Fraunces",Georgia,"Times New Roman",serif;overflow:hidden}
+#bar{position:fixed;left:0;top:env(safe-area-inset-top,0px);height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--rose));z-index:20;transition:width .6s ease;box-shadow:0 0 10px var(--rose)}
+.screen{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:36px 24px;gap:18px;z-index:2}
+.screen.on{display:flex;animation:in .7s cubic-bezier(.2,.8,.2,1) both}
+@keyframes in{from{opacity:0;transform:translateX(34px)}}
+h1,h2{font-weight:300;font-style:italic;margin:0;line-height:1.2}
+h1{font-size:clamp(30px,8vw,52px);max-width:15ch}
+h2{font-size:clamp(24px,6.4vw,34px);max-width:18ch}
+p{margin:0}
+.hand{font-family:"Caveat","Segoe Script",cursive;font-size:clamp(24px,6vw,31px);color:var(--gold)}
+.sub{font-size:clamp(16px,4.2vw,19px);line-height:1.6;max-width:28ch;color:var(--soft)}
+.letter{font-size:clamp(21px,5.4vw,30px);line-height:1.55;max-width:22ch;font-style:italic;font-weight:300;min-height:9em;display:flex;align-items:center}
+button{font:inherit;cursor:pointer;border:0;border-radius:999px;padding:14px 32px;font-size:19px;background:linear-gradient(135deg,var(--rose),#ff8fab);color:var(--rose-ink);box-shadow:0 0 26px var(--glow);transition:transform .15s,opacity .4s;max-width:92%}
+button:active{transform:scale(.95)}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.ghost{background:transparent;color:var(--soft);box-shadow:none;border:1.5px solid var(--soft)}
+.hide{opacity:0;pointer-events:none}
+.dots{display:flex;gap:9px}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--soft);opacity:.3;transition:.4s}
+.dots i.d{opacity:1;background:var(--rose);box-shadow:0 0 10px var(--rose)}
+.row{display:flex;gap:18px;align-items:center;justify-content:center;flex-wrap:wrap}
+#no.run{position:fixed;z-index:9}
+.art{width:min(84vw,340px);border-radius:28px;overflow:hidden;border:1px solid var(--line);box-shadow:0 20px 60px rgba(0,0,0,.35),0 0 40px var(--glow)}
+.art svg{display:block;width:100%}
+.cap{display:flex;flex-direction:column;gap:8px;align-items:center}
+/* intro scene */
+#s0{justify-content:space-between;padding:calc(48px + env(safe-area-inset-top,0px)) 24px calc(40px + env(safe-area-inset-bottom,0px));background:linear-gradient(#0d0220,#2b0a3a 45%,#6b1a4a 80%,#b83a64);color:#ffe9ef}
+#scene{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+#s0 .top{display:flex;flex-direction:column;gap:10px;align-items:center}
+.tw{animation:tw 3s ease-in-out infinite}
+@keyframes tw{50%{opacity:.2}}
+.hb{transform-box:fill-box;transform-origin:center;animation:beat 1.6s ease-in-out infinite}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.25)}30%{transform:scale(1)}}
+/* gift */
+#box{width:clamp(180px,52vw,260px);overflow:visible}
+.lid{transform-box:fill-box;transform-origin:left bottom;transition:transform .9s cubic-bezier(.3,1.6,.5,1)}
+.open .lid{transform:translate(18px,-70px) rotate(-22deg)}
+.gl{opacity:0;transition:opacity .6s}
+.open .gl{opacity:1}
+.float{animation:fl 2.4s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-8px)}}
+/* I love you */
+.ily{font-family:"Caveat","Segoe Script",cursive;font-weight:700;font-size:clamp(72px,24vw,130px);line-height:1;background:linear-gradient(135deg,#ffd9a0,#ff5c86 60%,#ff8fab);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 22px var(--glow));animation:pop 1.2s cubic-bezier(.2,1.5,.4,1) both}
+@keyframes pop{from{transform:scale(.4);opacity:0}}
+.petal{position:fixed;top:-30px;pointer-events:none;z-index:1;animation:fall linear forwards}
+@keyframes fall{to{transform:translate(var(--dx),110vh) rotate(var(--r));opacity:.6}}
+.rise{position:fixed;bottom:-40px;pointer-events:none;z-index:8;animation:up linear forwards}
+@keyframes up{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}
+.big{font-size:clamp(36px,10vw,64px)}
+.spin{transform-box:view-box;transform-origin:150px 150px;animation:spin 40s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.petal,.rise,.tw,.hb,.float,.ily,.spin,.screen.on{animation:none}.petal,.rise{display:none}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+
+<section class="screen on" id="s0">
+  <svg id="scene" viewBox="0 0 400 700" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs><radialGradient id="mg"><stop offset="0" stop-color="#fff6d8"/><stop offset="1" stop-color="#fff6d8" stop-opacity="0"/></radialGradient></defs>
+    <circle cx="300" cy="150" r="95" fill="url(#mg)" opacity=".55"/><circle cx="300" cy="150" r="34" fill="#fff3cf"/>
+    <g fill="#fff3d6"><circle class="tw" cx="40" cy="80" r="1.6"/><circle class="tw" cx="110" cy="40" r="1.2" style="animation-delay:.6s"/><circle class="tw" cx="190" cy="110" r="1.8" style="animation-delay:1.2s"/><circle class="tw" cx="70" cy="190" r="1.3" style="animation-delay:.9s"/><circle class="tw" cx="150" cy="230" r="1.5" style="animation-delay:1.8s"/><circle class="tw" cx="370" cy="60" r="1.4" style="animation-delay:.3s"/><circle class="tw" cx="230" cy="50" r="1.2" style="animation-delay:2.1s"/><circle class="tw" cx="350" cy="250" r="1.6" style="animation-delay:.2s"/></g>
+    <path d="M0 520 Q120 470 240 505 T400 490 V700 H0Z" fill="#2a0a2e"/><path d="M0 585 Q150 540 260 575 T400 560 V700 H0Z" fill="#170520"/>
+    <rect x="64" y="400" width="12" height="130" fill="#12031a"/><circle cx="70" cy="385" r="55" fill="#12031a"/><circle cx="35" cy="410" r="38" fill="#12031a"/><circle cx="105" cy="408" r="40" fill="#12031a"/>
+    <g fill="#ffd9a0"><circle class="tw" cx="40" cy="395" r="2.6"/><circle class="tw" cx="62" cy="360" r="2.6" style="animation-delay:.5s"/><circle class="tw" cx="95" cy="372" r="2.6" style="animation-delay:1s"/><circle class="tw" cx="110" cy="415" r="2.6" style="animation-delay:1.5s"/></g>
+    <g fill="#0a0212"><circle cx="205" cy="505" r="10"/><path d="M193 520 Q205 512 217 520 L219 556 H191Z"/><circle cx="233" cy="508" r="10"/><path d="M233 518 Q247 524 252 558 H214 Q222 524 233 518Z"/></g>
+    <path class="hb" d="M219 470c-6-5-11-9-11-14a6 6 0 0 1 11-3 6 6 0 0 1 11 3c0 5-5 9-11 14z" fill="#ff5c86"/>
+  </svg>
+  <div class="top"><p class="hand" style="color:#f6c98f">ek khoobsurat raat…</p><h1 id="t0">Jahan sirf tum aur main</h1></div>
+  <button class="nx">A very special gift for a very special person 🎁</button>
+</section>
+
+<section class="screen" id="sg">
+  <p class="hand">ye tumhare liye hai…</p>
+  <svg id="box" viewBox="0 0 200 190" aria-hidden="true">
+    <g class="gl"><circle cx="100" cy="80" r="70" fill="#ffd9a0" opacity=".25"/><g class="float"><path d="M100 78c-10-9-19-15-19-24a10 10 0 0 1 19-5 10 10 0 0 1 19 5c0 9-9 15-19 24z" fill="#ff5c86" style="filter:drop-shadow(0 0 12px #ff5c86)"/></g></g>
+    <rect x="30" y="100" width="140" height="80" rx="6" fill="#e0245e"/><rect x="92" y="100" width="16" height="80" fill="#ffd9a0"/>
+    <g class="lid"><rect x="22" y="76" width="156" height="30" rx="6" fill="#ff4d80"/><rect x="92" y="76" width="16" height="30" fill="#ffd9a0"/><path d="M100 76c-26-34-48-8-26 0zM100 76c26-34 48-8 26 0z" fill="#ffd9a0"/><circle cx="100" cy="74" r="7" fill="#f6b86a"/></g>
+  </svg>
+  <button id="unwrap">Gift kholo 🎀</button>
+</section>
+
+<section class="screen" id="sl">
+  <p class="hand">gift ke andar sirf ek cheez thi…</p>
+  <div class="ily">I Love You</div>
+  <p class="hand" id="ilyn"></p>
+  <p class="sub">Shabdon mein kam padta hai, isliye aage kuch yaadein dikhata hoon.</p>
+  <button class="nx">Aage dekho 💕</button>
+</section>
+
+<section class="screen" id="a1"><div class="art" id="art1"></div><div class="cap"><h2>Pehli nazar ka jaadu</h2><p class="sub">Tumse milna meri life ka sabse khoobsurat mod tha.</p></div><button class="nx">Aage</button></section>
+<section class="screen" id="a2"><div class="art" id="art2"></div><div class="cap"><h2>Barish mein bhi tumhara saath</h2><p class="sub">Tumhare saath har mausam pyaara lagta hai, barish ho ya dhoop.</p></div><button class="nx">Aage</button></section>
+<section class="screen" id="a3"><div class="art" id="art3"></div><div class="cap"><h2>Taaron ke neeche ek wish</h2><p class="sub">Har tootte taare se maine sirf tumhe maanga.</p></div><button class="nx">Aage</button></section>
+
+<section class="screen" id="s1">
+  <p class="hand" id="who"></p>
+  <p class="letter" id="line"></p>
+  <div class="dots" id="dots"></div>
+  <button id="lnext" class="hide">Aage</button>
+</section>
+
+<section class="screen" id="s2">
+  <p class="hand">aur ab, meri sabse zaroori baat…</p>
+  <h1 id="ask" style="max-width:17ch;font-size:clamp(27px,7.2vw,46px)"></h1>
+  <div class="row"><button id="yes">Haan, hamesha! 💖</button><button id="no" class="ghost">Nahi</button></div>
+</section>
+
+<section class="screen" id="s3">
+  <div class="art" id="art4"></div>
+  <h1 class="big">Mujhe pata tha 💖</h1>
+  <p class="sub">Tumne meri zindagi ko poora kar diya. Ab ek aakhri baat, jo main hamesha se tumse kehna chahta tha…</p>
+  <button class="nx">Wo aakhri baat 💌</button>
+</section>
+
+<section class="screen" id="s4">
+  <svg viewBox="0 0 300 300" style="width:min(80vw,320px);filter:drop-shadow(0 0 22px var(--glow))" role="img" aria-label="I love you written in a circle around a heart">
+    <defs><path id="cp" d="M150,150 m-112,0 a112,112 0 1,1 224,0 a112,112 0 1,1 -224,0"/></defs>
+    <g class="spin"><text font-family="Fraunces,Georgia,serif" font-style="italic" font-size="19" fill="#f6c98f" textLength="700" lengthAdjust="spacing"><textPath href="#cp" textLength="700" lengthAdjust="spacing">I love you ♥ I love you ♥ I love you ♥ I love you ♥ I love you ♥ I love you ♥ </textPath></text></g>
+    <g transform="translate(94 98) scale(3.5)"><path class="hb" fill="#ff5c86" d="M16 28C6 20 1 15 1 9a7.5 7.5 0 0 1 15-2 7.5 7.5 0 0 1 15 2c0 6-5 11-15 19z"/></g>
+  </svg>
+  <div class="ily" style="font-size:clamp(60px,19vw,104px)">I Love You</div>
+  <p class="hand" id="finn"></p>
+  <p class="sub">Jab tak saansein hain, tab tak tumhara. Har mushkil mein, har khushi mein, har janam mein.</p>
+  <p class="hand">— tumhara Divyy 💖</p>
+</section>
+
+<script>
+var q=function(id){return document.getElementById(id)};
+var NAME="";
+try{NAME=decodeURIComponent((location.hash||"").slice(1)).replace(/[^A-Za-z\u0900-\u097F ]/g,"").slice(0,20)}catch(e){}
+var nm=NAME||"Meri jaan";
+var calm=window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+var ORDER=["s0","sg","sl","a1","a2","a3","s1","s2","s3","s4"],cur=0,i=0,typing=null,dodges=0;
+var LINES=[
+"Kuch log life mein aise aate hain ki sab kuch badal jaata hai. Tum wahi ho.",
+"Tumhari muskurahat meri subah hai, aur tumhari awaaz mera sukoon.",
+"Main duniya ka sabse perfect insaan nahi hoon, par tumhare liye sabse sachcha zaroor hoon.",
+"Har din tumhare saath ek nayi kahani lagta hai, aur main poori zindagi ye kahani tumhare saath likhna chahta hoon."
+];
+var NO=["Nahi","Pakka?","Ek baar aur soch lo 🥺","Arre pakad ke dikhao 😜","Ye button dhokebaaz hai!","Ab toh Haan bol do 💖"];
+q("ask").textContent=nm+", kya tum mujhse pyaar karti ho? Kya zindagi bhar mera saath doge?".replace("doge","dogi");
+q("ilyn").textContent=nm+" ♥";q("finn").textContent="for "+nm+", forever";
+if(NAME)q("t0").textContent=NAME+", ye raat sirf tumhari hai";
+
+/* original anime-style chibi couple */
+function chibi(cx,g,hair,iris,body){
+  var s=g?'<path d="M'+(cx-22)+' 160Q'+cx+' 150 '+(cx+22)+' 160L'+(cx+36)+' 245H'+(cx-36)+'Z" fill="'+body+'"/><rect x="'+(cx-44)+'" y="92" width="88" height="82" rx="38" fill="'+hair+'"/>'
+   :'<rect x="'+(cx-25)+'" y="158" width="50" height="88" rx="16" fill="'+body+'"/>';
+  s+='<circle cx="'+cx+'" cy="122" r="36" fill="#ffe3d3"/>';
+  s+='<path d="M'+(cx-38)+' 120Q'+(cx-42)+' 78 '+cx+' 80Q'+(cx+42)+' 78 '+(cx+38)+' 120Q'+(cx+22)+' 100 '+cx+' 106Q'+(cx-22)+' 100 '+(cx-38)+' 120Z" fill="'+hair+'"/>';
+  s+=g?'<circle cx="'+(cx+26)+'" cy="88" r="7" fill="#ff5c86"/><circle cx="'+(cx+36)+'" cy="95" r="5" fill="#ff8fab"/>'
+   :'<path d="M'+(cx-16)+' 86L'+(cx-6)+' 62L'+(cx+3)+' 82L'+(cx+16)+' 64L'+(cx+22)+' 88Z" fill="'+hair+'"/>';
+  [-14,14].forEach(function(d){
+    s+='<ellipse cx="'+(cx+d)+'" cy="125" rx="7" ry="9" fill="'+iris+'"/><ellipse cx="'+(cx+d)+'" cy="127" rx="3.6" ry="5.2" fill="#1a1030"/><circle cx="'+(cx+d-2)+'" cy="121" r="2.8" fill="#fff"/><ellipse cx="'+(cx+d*1.6)+'" cy="138" rx="6.5" ry="3.2" fill="#ff8fa8" opacity=".65"/>'});
+  return s+'<path d="M'+(cx-5)+' 141Q'+cx+' 148 '+(cx+5)+' 141" stroke="#8a3b4a" stroke-width="2" fill="none" stroke-linecap="round"/>';
+}
+function couple(){
+  return chibi(112,0,"#2b2140","#4a6fd6","#3d5a9e")+chibi(188,1,"#6b3a5e","#d65a9a","#ff8fb1")
+   +'<path d="M130 182L148 206M170 182L152 206" stroke="#ffe3d3" stroke-width="10" stroke-linecap="round"/><circle cx="150" cy="208" r="8" fill="#ffe3d3"/>';
+}
+var HEART='<path class="hb" d="M150 66c-9-8-17-13-17-21a9 9 0 0 1 17-4 9 9 0 0 1 17 4c0 8-8 13-17 21z" fill="#ff5c86" style="filter:drop-shadow(0 0 6px #ff5c86)"/>';
+function scene(t){
+  var bg,ex="";
+  if(t==="sakura"){
+    bg='<defs><linearGradient id="gs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd9e8"/><stop offset="1" stop-color="#ffa9c8"/></linearGradient></defs><rect width="300" height="300" fill="url(#gs)"/><path d="M-10 40Q80 30 140 -10" stroke="#7a4a5a" stroke-width="7" fill="none"/><path d="M310 60Q230 40 190 -10" stroke="#7a4a5a" stroke-width="7" fill="none"/>';
+    [[20,38],[48,32],[78,28],[105,14],[130,0],[285,60],[255,48],[225,36],[200,12],[170,0],[60,52],[240,70]].forEach(function(p){bg+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="12" fill="#ff8fb8" opacity=".95"/><circle cx="'+p[0]+'" cy="'+p[1]+'" r="4" fill="#ffd9a0"/>'});
+    bg+='<ellipse cx="150" cy="262" rx="190" ry="40" fill="#ff9cc0"/>';ex=HEART;
+  }else if(t==="rain"){
+    bg='<defs><linearGradient id="gr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7d93d6"/><stop offset="1" stop-color="#2f3a6a"/></linearGradient></defs><rect width="300" height="300" fill="url(#gr)"/><ellipse cx="150" cy="270" rx="190" ry="36" fill="#232c55"/>';
+    for(var k=0;k<26;k++){var x=(k*37)%300,y=(k*53)%240;bg+='<line x1="'+x+'" y1="'+y+'" x2="'+(x-5)+'" y2="'+(y+14)+'" stroke="#cfe0ff" stroke-width="1.4" opacity=".5"/>'}
+    ex='<path d="M150 150V206" stroke="#4a2a3a" stroke-width="3"/><path d="M55 96Q150 -26 245 96Q222 82 198 96Q174 82 150 96Q126 82 102 96Q78 82 55 96Z" fill="#ff6b95"/><path d="M150 -4V96M100 28L128 96M200 28L172 96" stroke="#e0457a" stroke-width="2"/>';
+  }else{
+    bg='<defs><linearGradient id="gn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d0220"/><stop offset="1" stop-color="#5a1655"/></linearGradient></defs><rect width="300" height="300" fill="url(#gn)"/><circle cx="240" cy="48" r="20" fill="#fff3cf"/><circle cx="240" cy="48" r="38" fill="#fff3cf" opacity=".15"/>';
+    [[30,30],[70,70],[120,25],[180,60],[40,120],[260,120],[210,20],[100,100],[285,80]].forEach(function(p,n){bg+='<circle class="tw" cx="'+p[0]+'" cy="'+p[1]+'" r="1.8" fill="#fff3d6" style="animation-delay:'+(n*.4)+'s"/>'});
+    bg+='<path d="M0 238Q100 214 200 236T300 226V300H0Z" fill="#170520"/>';ex=HEART;
+  }
+  return '<svg viewBox="0 0 300 300" role="img" aria-label="Anime style couple illustration">'+bg+couple()+ex+'</svg>';
+}
+q("art1").innerHTML=scene("sakura");q("art2").innerHTML=scene("rain");q("art3").innerHTML=scene("night");q("art4").innerHTML=scene("sakura");
+
+function show(id){document.querySelectorAll(".screen").forEach(function(e){e.classList.remove("on")});q(id).classList.add("on")}
+function go(n){
+  cur=n;show(ORDER[n]);q("bar").style.width=Math.round(n/(ORDER.length-1)*100)+"%";
+  if(ORDER[n]==="sl"||ORDER[n]==="s4")burst(45);
+  if(ORDER[n]==="s1"){i=0;q("who").textContent="Sunno "+nm+"…";dots();type(LINES[0])}
+}
+function petals(){if(calm)return;var set=["🌹","🌸","💮"];
+  var p=document.createElement("span");p.className="petal";p.textContent=set[Math.floor(Math.random()*3)];
+  p.style.left=Math.random()*100+"vw";p.style.fontSize=(14+Math.random()*14)+"px";
+  p.style.setProperty("--dx",(Math.random()*120-60)+"px");p.style.setProperty("--r",(Math.random()*540-270)+"deg");
+  p.style.animationDuration=(7+Math.random()*6)+"s";document.body.appendChild(p);setTimeout(function(){p.remove()},13500)}
+setInterval(petals,900);
+function burst(n){if(calm)return;var set=["💖","💗","💕","🌹","✨","💫"];
+  for(var k=0;k<n;k++){(function(){var h=document.createElement("span");h.className="rise";
+    h.textContent=set[Math.floor(Math.random()*set.length)];h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=(18+Math.random()*30)+"px";h.style.animationDuration=(3+Math.random()*3)+"s";
+    h.style.animationDelay=Math.random()*1.5+"s";document.body.appendChild(h);setTimeout(function(){h.remove()},7500)})()}}
+function dots(){q("dots").innerHTML=LINES.map(function(_,k){return '<i class="'+(k<=i?"d":"")+'"></i>'}).join("")}
+function type(txt){
+  clearInterval(typing);var el=q("line"),n=0;q("lnext").classList.add("hide");el.textContent="";
+  if(calm){el.textContent=txt;q("lnext").classList.remove("hide");return}
+  typing=setInterval(function(){n++;el.textContent=txt.slice(0,n);
+    if(n>=txt.length){clearInterval(typing);q("lnext").classList.remove("hide")}},42)}
+document.querySelectorAll(".nx").forEach(function(b){b.onclick=function(){go(cur+1)}});
+q("unwrap").onclick=function(){
+  q("sg").classList.add("open");q("unwrap").classList.add("hide");burst(25);
+  setTimeout(function(){go(2)},calm?200:1900)};
+q("lnext").onclick=function(){
+  i++;if(i>=LINES.length){go(7);return}
+  dots();type(LINES[i]);
+  if(i===LINES.length-1)q("lnext").textContent="Ek aakhri baat";
+};
+function dodge(e){
+  if(e&&e.preventDefault)e.preventDefault();
+  var b=q("no");dodges++;
+  b.textContent=NO[Math.min(dodges,NO.length-1)];b.classList.add("run");
+  var w=window.innerWidth-b.offsetWidth-24,h=window.innerHeight-b.offsetHeight-24;
+  b.style.left=(12+Math.random()*Math.max(w,0))+"px";b.style.top=(12+Math.random()*Math.max(h,0))+"px";
+  q("yes").style.transform="scale("+Math.min(1+dodges*0.12,1.8)+")";
+}
+q("no").addEventListener("mouseenter",dodge);
+q("no").addEventListener("touchstart",dodge,{passive:false});
+q("no").addEventListener("click",dodge);
+q("yes").onclick=function(){go(8);burst(70);setTimeout(function(){burst(50)},2000)};
+</script>
+</body>
+</html>
